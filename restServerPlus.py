@@ -75,7 +75,7 @@ class CkanDataQuality(Resource):
         if not ckan.isResourceInPortal(SUPPORTED_PORTALS[ckan_portal]['url'],resource_id):
             api.abort(404, "The resource {} does not exist on the portal".format(resource_id))       
 
-        return ckan.ckan_data_quality(SUPPORTED_PORTALS[ckan_portal]['url'],resource_id)
+        return ckan.get_ckan_data_quality(SUPPORTED_PORTALS[ckan_portal]['url'],resource_id)
 
 
 
