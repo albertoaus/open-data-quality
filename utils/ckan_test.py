@@ -88,6 +88,3 @@ class develop(unittest.TestCase):
 if __name__ == '__main__':
     suite = unittest.TestLoader().loadTestsFromTestCase(TestSequenceFunctions)
     unittest.TextTestRunner(verbosity=2).run(suite)
-    #suite = unittest.TestSuite()
-    #suite.addTest(WidgetTestCase('test_invalid_ckan_data_quality')
-    #unittest.TextTestRunner(verbosity=2).run(suite)
