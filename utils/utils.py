@@ -38,9 +38,6 @@ class CKAN_Utils():
 
 	def get_ckan_data_quality(self, ckan_portal, resource_id):
 		
-		#Anadir antes resource_show --> openness_score:   ,openness_score_reason   Si existe devolver este??
-		#No encuentro recursos que tengan este campo pero existen porque los he visto
-
 		results = self.getResourceStatusDetails(ckan_portal, resource_id)['result']
 		result_qa_type = []
 		result_qa_errors = []
