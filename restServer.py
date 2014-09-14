@@ -12,8 +12,9 @@ ns = api.namespace('api', description='Open Data Quality API')
 
 OPERATIONS = {
     'avalible_operations' : [
-    '/uk_api_ckan/resource_show/<string:ckan_portal>/<string:resource_id>',
-    '/uk_api_ckan/resource_status_show/<string:ckan_portal>/<string:resource_id>',
+    '/api/',
+    '/api_ckan/resource_show/<string:ckan_portal>/<string:resource_id>',
+    '/api_ckan/resource_status_show/<string:ckan_portal>/<string:resource_id>',
      '/ckan_data_quality/<string:ckan_portal>/<string:resource_id>'
     ]
 }
@@ -48,7 +49,7 @@ def abort_if_qa_extension_is_not_supported(portal_id):
 
 
 
-@ns.route('/uk_api_ckan/resource_show/<string:ckan_portal>/<string:resource_id>')
+@ns.route('/api_ckan/resource_show/<string:ckan_portal>/<string:resource_id>')
 @api.doc(responses={404: 'Resource not found'}, params={'ckan_portal': 'The ID of the ckan portal','resource_id': 'The id of the resource in the portal'})
 class API_CKAN_getResourceDetails(Resource):
     '''Shows the ckan data resource's details'''
@@ -64,7 +65,7 @@ class API_CKAN_getResourceDetails(Resource):
         return ckan.getResourceDetails(SUPPORTED_PORTALS[ckan_portal]['url'],resource_id)
 
 
-@ns.route('/uk_api_ckan/resource_status_show/<string:ckan_portal>/<string:resource_id>')
+@ns.route('/api_ckan/resource_status_show/<string:ckan_portal>/<string:resource_id>')
 @api.doc(responses={404: 'Resource not found'}, params={'ckan_portal': 'The ID of the ckan portal','resource_id': 'The id of the resource in the portal'})
 class API_CKAN_getResourceStatusDetails(Resource):
     '''Shows the ckan status data resource's details'''
