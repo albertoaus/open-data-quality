@@ -5,10 +5,18 @@ import json
 class CKAN_Utils():
 
 	api_version = "/api/3/action/"
-	get_resource_status_show = "resource_status_show";
+	get_resource_status_show = "resource_status_show"
 	get_resource_show = "resource_show"
+	get_package_show = "package_show"
 	param_id = "?id="
 
+	def getPackageDetails(self, ckan_portal, package_name):
+		r = requests.get(ckan_portal + self.api_version + self.get_package_show + self.param_id + package_name)
+		if (r.status_code == requests.codes.ok):
+			parsed = json.loads(r.content)
+			return parsed
+
+		return False
 
 	def getResourceDetails(self, ckan_portal, resource_id):
 		r = requests.get(ckan_portal + self.api_version + self.get_resource_show + self.param_id + resource_id)
