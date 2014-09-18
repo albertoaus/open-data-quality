@@ -19,6 +19,7 @@ class TestSequenceFunctions(unittest.TestCase):
         self.portal_url = self.portal_UK_url
         self.resource_id_with_qa = "ea05ccea-543c-433b-a082-16f73cbf90e3"
         self.resource_id_without_qa = "d55bb6a8-ba15-4bba-8896-218bd1bfacf6"
+        self.package_name = "live-traffic-information-from-the-highways-agency-road-network"
 
         print ("Using API from portal " + self.portal_url)
         print ("Using API version '" + self.ckan.api_version +"'")
@@ -28,32 +29,39 @@ class TestSequenceFunctions(unittest.TestCase):
         # Makes sure the resource is in the portal
         self.assertTrue(self.ckan.isResourceInPortal(self.portal_url, self.resource_id_with_qa))
 
-    def test_resource_details(self):
+    def test_package_details(self):
         # Makes sure the response from the call getResourceDetails using the CKAN API is succesful
-        json_details = self.ckan.getResourceDetails(self.portal_url, self.resource_id_with_qa);
+        json_details = self.ckan.getPackageDetails(self.portal_url, self.package_name);
         print ""
         print json.dumps(json_details, indent=4, sort_keys=True)
         self.assertTrue(json_details['success'])
 
+    def test_resource_details(self):
+        # Makes sure the response from the call getResourceDetails using the CKAN API is succesful
+        json_details = self.ckan.getResourceDetails(self.portal_url, self.resource_id_with_qa);
+        #print ""
+        #print json.dumps(json_details, indent=4, sort_keys=True)
+        self.assertTrue(json_details['success'])
+
     def test_resource_status_details(self):
         # Makes sure the response from the call getResourceDetails using the CKAN API is succesful
-        print ("")
+        #print ("")
         json_status_details = self.ckan.getResourceStatusDetails(self.portal_url, self.resource_id_with_qa);
-        print json.dumps(json_status_details, indent=4, sort_keys=True)
+        #print json.dumps(json_status_details, indent=4, sort_keys=True)
         self.assertTrue(json_status_details['success'])
 
     def test_valid_ckan_data_quality(self):
         # Makes sure the response from the call get_ckan_data_quality for resource with QA using the CKAN API is succesful
-        print ("")
+        #print ("")
         json_ckan_quality = self.ckan.get_ckan_data_quality(self.portal_url, self.resource_id_with_qa);
-        print json.dumps(json_ckan_quality, indent=4, sort_keys=True)
+        #print json.dumps(json_ckan_quality, indent=4, sort_keys=True)
         self.assertTrue(json_ckan_quality['success'])
     
     def test_invalid_ckan_data_quality(self):
         # Makes sure the response from the call get_ckan_data_quality for a resource without using the CKAN API is succesful
-        print ("")
+        #print ("")
         json_ckan_quality = self.ckan.get_ckan_data_quality(self.portal_url, self.resource_id_without_qa);
-        print json.dumps(json_ckan_quality, indent=4, sort_keys=True)
+        #print json.dumps(json_ckan_quality, indent=4, sort_keys=True)
         self.assertFalse(json_ckan_quality['success'])
     
     
@@ -73,16 +81,17 @@ class develop(unittest.TestCase):
         self.portal_url = self.portal_UK_url
         self.resource_id_with_qa = "ea05ccea-543c-433b-a082-16f73cbf90e3"
         self.resource_id_without_qa = "d55bb6a8-ba15-4bba-8896-218bd1bfacf6"
+        self.package_name = "live-traffic-information-from-the-highways-agency-road-network"
 
         print ("Using API from portal " + self.portal_url)
         print ("Using API version '" + self.ckan.api_version +"'")
 
-    def test_invalid_ckan_data_quality(self):
-        # Makes sure the response from the call get_ckan_data_quality for a resource without using the CKAN API is succesful
-        print ("")
-        json_ckan_quality = self.ckan.get_ckan_data_quality(self.portal_url, self.resource_id_without_qa);
-        print json.dumps(json_ckan_quality, indent=4, sort_keys=True)
-        self.assertFalse(json_ckan_quality['success'])
+    def test_package_details(self):
+        # Makes sure the response from the call getResourceDetails using the CKAN API is succesful
+        json_details = self.ckan.getPackageDetails(self.portal_url, self.package_name);
+        print ""
+        print json.dumps(json_details, indent=4, sort_keys=True)
+        self.assertTrue(json_details['success'])
 
 
 if __name__ == '__main__':
